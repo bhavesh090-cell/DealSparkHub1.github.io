@@ -4,37 +4,17 @@
   <title>Deal Spark Hub - Mens Fashion Deals</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body { font-family: Arial; margin:0; padding:15px; }
-    h1 { text-align:center; }
-    .post { border-bottom:1px solid #ddd; padding:10px 0; }
-    .post a { text-decoration:none; color:black; font-weight:bold; }
+    body { font-family: Arial; margin:0; padding:15px; text-align:center; }
   </style>
 </head>
 <body>
 
 <h1>🔥 Deal Spark Hub</h1>
-<p style="text-align:center;">Best Mens Fashion Deals - Updated Automatically</p>
+<p>Best Mens Fashion Deals - Updated Automatically</p>
 
-<div id="posts">Loading deals...</div>
-
-<script>
-fetch("https://api.rss2json.com/v1/api.json?rss_url=https://rsshub.app/telegram/channel/DealSparkHub1")
-.then(response => response.json())
-.then(data => {
-  let output = "";
-  data.items.slice(0,20).forEach(item => {
-    output += `
-      <div class="post">
-        <a href="${item.link}" target="_blank">${item.title}</a>
-        <p>${item.pubDate}</p>
-      </div>
-    `;
-  });
-  document.getElementById("posts").innerHTML = output;
-})
-.catch(error => {
-  document.getElementById("posts").innerHTML = "Unable to load posts.";
-});
+<script async src="https://telegram.org/js/telegram-widget.js?22"
+        data-telegram-post="DealSparkHub1/1"
+        data-width="100%">
 </script>
 
 </body>
