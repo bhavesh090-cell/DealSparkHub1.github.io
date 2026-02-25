@@ -3,18 +3,39 @@
 <head>
   <title>Deal Spark Hub - Mens Fashion Deals</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: Arial; margin:0; padding:15px; }
+    h1 { text-align:center; }
+    .post { border-bottom:1px solid #ddd; padding:10px 0; }
+    .post a { text-decoration:none; color:black; font-weight:bold; }
+  </style>
 </head>
-<body style="margin:0; font-family: Arial, sans-serif; text-align:center;">
+<body>
 
-  <h1>🔥 Deal Spark Hub</h1>
-  <p>Best Mens Fashion Deals - Updated Automatically</p>
+<h1>🔥 Deal Spark Hub</h1>
+<p style="text-align:center;">Best Mens Fashion Deals - Updated Automatically</p>
 
-  <iframe 
-    src="https://t.me/s/DealSparkHub1"
-    width="100%"
-    height="800"
-    style="border:none;">
-  </iframe>
+<div id="posts">Loading deals...</div>
+
+<script>
+fetch("https://api.rss2json.com/v1/api.json?rss_url=https://rsshub.app/telegram/channel/DealSparkHub1")
+.then(response => response.json())
+.then(data => {
+  let output = "";
+  data.items.slice(0,20).forEach(item => {
+    output += `
+      <div class="post">
+        <a href="${item.link}" target="_blank">${item.title}</a>
+        <p>${item.pubDate}</p>
+      </div>
+    `;
+  });
+  document.getElementById("posts").innerHTML = output;
+})
+.catch(error => {
+  document.getElementById("posts").innerHTML = "Unable to load posts.";
+});
+</script>
 
 </body>
 </html>
